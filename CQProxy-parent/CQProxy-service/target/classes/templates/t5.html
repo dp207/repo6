@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页-taste way特斯威高端牧恩牛奶</title>
+    <link rel="stylesheet" href="asserts/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="asserts/css/app.css" type="text/css"/>
+    <script src="asserts/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="asserts/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+<body>
+<form id="testForm" method="POST">
+            <td><input type="text" style="width: 149px" name="username" /></td>
+
+</form>
+<input type="button" value="添加" onclick="test()" />
+<form action="getall" method="POST">
+    <input type="submit" value="返回">
+</form>
+<script type="text/javascript">
+    var base_url = "http://localhost:9001/brand/insertMessage";
+    var mm=5
+    // $("#td1").text(mm+" J2EE开发");
+    alert($("#testForm").serialize());
+    function test() {
+        $.ajax({
+            url: base_url,
+            type: "POST",
+            async: false,
+            // data:{ message:JSON.stringify($("#testForm").serialize())},
+            data:$("#testForm").serialize(),
+            success:function (res) {
+                console.log(res);
+                if (res.status == 200){
+                }else if(res.status == 100) {
+                    alert("错误代码：" + res.status + "  单元格数据不存在  " +res.body)
+                }else{
+                    alert("错误代码：" + res.status + "  错误原因：  " + res.body)
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>
